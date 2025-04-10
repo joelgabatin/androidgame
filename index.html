@@ -22,5 +22,39 @@
       });
     }
   </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker failed', err));
+      });
+    }
+
+    // Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      const installBtn = document.createElement('button');
+      installBtn.textContent = 'Install Game';
+      installBtn.style.marginTop = '20px';
+      installBtn.style.fontSize = '1.2rem';
+      installBtn.style.padding = '10px 20px';
+      document.body.appendChild(installBtn);
+
+      installBtn.addEventListener('click', () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice => {
+          if (choice.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
