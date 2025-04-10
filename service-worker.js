@@ -5,7 +5,7 @@ const filesToCache = [
   '/style.css',
   '/game.js',
   '/manifest.json',
-  '/icon-192.png',
+  '/icon-128.png',
   '/icon-512.png'
 ];
 
