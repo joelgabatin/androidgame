@@ -14,3 +14,10 @@ button {
   border: none;
   border-radius: 10px;
 }
+#installButton {
+  display: block;
+  margin: 20px auto;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
